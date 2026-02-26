@@ -4,7 +4,7 @@ A concert discovery app that helps users find live music recordings from the [In
 
 ## Features
 
-- Browse concerts from archive.org
+- Browse concerts from archive.org (currently just 20000)
 - Filter by year, venue, and popularity
 - Direct links to listen on Archive.org
 - Built with Python, Streamlit, and Internet Archive API
@@ -19,12 +19,12 @@ A concert discovery app that helps users find live music recordings from the [In
 
 ##  Project Structure
 
-music_recommender//n
-├── data/ # Downloaded concert metadata/n
-├── src/ # Data fetching scripts/n
-├── app/ # Streamlit application/n
-├── requirements.txt # Python dependencies/n
-└── README.md # This file/n
+music_recommender/
+├── data/ # Downloaded concert metadata
+├── src/ # Data fetching scripts
+├── app/ # Streamlit application
+├── requirements.txt # Python dependencies
+└── README.md # This file
 
 
 ## How to Run Locally
@@ -47,7 +47,7 @@ pip install -r requirements.txt
 ### 4. Fetch Data
 ```bash
 cd src
-python fetch_data.py
+python fetch_data.py #edit for more than 20.000
 
 ### 5. Run App
 ```bash
