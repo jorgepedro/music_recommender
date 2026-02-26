@@ -3,9 +3,9 @@ import pandas as pd
 import time
 import os
 
-def fetch_top_bands():
-    """Fetch ALL etree records to find true top 50 bands"""
-    print("🎵 Fetching ALL concerts from Archive.org (this takes ~10-15 min)...")
+def fetch_all_shows(max_items=20000):
+    """Fetch shows from Archive.org without filtering by band popularity"""
+    print(f"🎵 Fetching up to {max_items:,} shows from Archive.org...")
     
     search = ia.search_items(
         'collection:etree',
@@ -18,6 +18,11 @@ def fetch_top_bands():
     for item in search:
         count += 1
         
+        # Stop after max_items to keep it reasonable
+        if count > max_items:
+            print(f"  🛑 Stopped after {max_items:,} items.")
+            break
+            
         # Show progress every 1,000 items
         if count % 1000 == 0:
             print(f"  ⏳ Processed {count:,} items...")
@@ -34,21 +39,16 @@ def fetch_top_bands():
                 'downloads': item.get('downloads', 0),
                 'venue': item.get('venue', 'Unknown')
             })
-        time.sleep(0.01)  # Be polite to API
+        time.sleep(0.01)
     
     df = pd.DataFrame(results)
     print(f"  ✅ Total items fetched: {len(df):,}")
+    print(f"  📀 Unique bands: {df['creator'].nunique()}")
     
-    # Now get TRUE top 50 bands
-    num_bands = 50
-    top_bands = df['creator'].value_counts().head(num_bands).index.tolist()
-    filtered_df = df[df['creator'].isin(top_bands)]
-    
-    return filtered_df
+    return df
 
 if __name__ == "__main__":
-    df = fetch_top_bands()
+    df = fetch_all_shows(max_items=20000)
     output_path = os.path.join('..', 'data', 'live_music_archive.csv')
     df.to_csv(output_path, index=False)
     print(f"✅ Success! Saved {len(df):,} shows to {output_path}")
-    print(f"📀 Unique bands: {df['creator'].nunique()}")
