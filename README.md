@@ -19,12 +19,12 @@ A concert discovery app that helps users find live music recordings from the [In
 
 ##  Project Structure
 
-music_recommender/
-├── data/ # Downloaded concert metadata
-├── src/ # Data fetching scripts
-├── app/ # Streamlit application
-├── requirements.txt # Python dependencies
-└── README.md # This file
+music_recommender//n
+├── data/ # Downloaded concert metadata/n
+├── src/ # Data fetching scripts/n
+├── app/ # Streamlit application/n
+├── requirements.txt # Python dependencies/n
+└── README.md # This file/n
 
 
 ## How to Run Locally
