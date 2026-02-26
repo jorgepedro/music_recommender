@@ -4,7 +4,7 @@ A concert discovery app that helps users find live music recordings from the [In
 
 ## Features
 
-- Browse concerts from 50+ popular bands
+- Browse concerts from archive.org
 - Filter by year, venue, and popularity
 - Direct links to listen on Archive.org
 - Built with Python, Streamlit, and Internet Archive API
